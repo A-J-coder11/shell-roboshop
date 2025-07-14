@@ -8,12 +8,12 @@ DOMAIN-NAME="twous.sbs"
 
 for instance in ${INSTANCES[@]}
 do 
-    INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f  --instance-type  t2.micro --security-group-ids  sg-09b7c101d210b7538 --tag-specifications "ResourceType=instance, Tags=[{Key=Name, Value=test}]" --query "Instances[0].InstanceId" --output text)
+    INSTANCE_ID=$(aws ec2 run-instances --image-id ami-09c813fb71547fc4f  --instance-type  t2.micro --security-group-ids  sg-09b7c101d210b7538 --tag-specifications "ResourceType=instance, Tags=[{Key=Name, Value=$instance}]" --query "Instances[0].InstanceId" --output text)
   if [ $instance != "frontend" ]
   then 
-     Ip=aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PrivateIpAddress" --output text
+     Ip=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PrivateIpAddress" --output text)
   else
-     Ip=aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output te
+     Ip=$(aws ec2 describe-instances --instance-ids $INSTANCE_ID --query "Reservations[0].Instances[0].PublicIpAddress" --output text)
   fi
   echo "$instance Ip adsress: $IP"
 done
