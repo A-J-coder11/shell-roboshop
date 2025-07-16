@@ -8,7 +8,7 @@ N='\e[0m'
 LOGS_FOLDER="/var/log/roboshop-logs"
 SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
 LOG_FILE="$LOGS_FOLDER/$SCRIPT_NAME.log"
-SCRIPT_DIR=$PWD
+SCRIPT_DIR=$pwd
 
 
 mkdir -p $LOGS_FOLDER
@@ -48,7 +48,7 @@ VALIDATE $? "Creating roboshop system user"
 mkdir /app  
 VALIDATE $? "Creating app dirctory"
 
-curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip
+curl -o /tmp/catalogue.zip https://roboshop-artifacts.s3.amazonaws.com/catalogue-v3.zip &>>$LOG_FILE
 VALIDATE $? "Downloading Catalogue"
 
 cd /app 
