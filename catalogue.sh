@@ -58,7 +58,7 @@ VALIDATE $? "Unzipping catalogue"
 npm install &>>$LOG_FILE
 VALIDATE $? "installing dependencies"
 
-cp $SCRIPT_DIR/catalouge.service /etc/systemd/system/catalogue.service
+cp $SCRIPT_DIR/catalogue.service /etc/systemd/system/catalogue.service
 VALIDATE $? "Validate copying catalogue service"
 
 systemctl daemon-reload &>>$LOG_FILE
@@ -71,6 +71,6 @@ dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "installing mongodb client"
 
 mongosh --host mongodb.twous.sbs </app/db/master-data.js &>>$LOG_FILE
-
+VALIDATE $? "Loading data into MongoDB"
 
 
