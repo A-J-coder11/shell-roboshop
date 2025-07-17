@@ -77,7 +77,7 @@ cp $SCRIPT_DIR/mongo.repo /etc/yum.repos.d/mongo.repo
 dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "installing mongodb client"
 
-mongosh --host mongodb.twous.sbs < app/db/master-data.js &>>$LOG_FILE
+mongosh --host mongodb.twous.sbs --file app/db/master-data.js &>>$LOG_FILE
 VALIDATE $? "Loading data into MongoDB"
 
 
