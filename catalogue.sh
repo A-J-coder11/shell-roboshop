@@ -78,11 +78,11 @@ dnf install mongodb-mongosh -y &>>$LOG_FILE
 VALIDATE $? "installing mongodb client"
 
 
-STATUS=$(mongosh --host mongodb.twous.sbs --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
-if [ $STATUS -lt 0 ]
-then
+# STATUS=$(mongosh --host mongodb.twous.sbs --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
+# if [ $STATUS -lt 0 ]
+# then
     mongosh --host 172.31.87.7 < /app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Loading data into MongoDB"
-else
-  echo -e "Data is already loaded...$Y Skipping $N"
-fi
+# else
+#   echo -e "Data is already loaded...$Y Skipping $N"
+# fi
