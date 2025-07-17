@@ -5,7 +5,7 @@ Description = Catalogue Service
 User=roboshop
 Environment=MONGO=true
 // highlight-start
-Environment=MONGODB_HOST=localhost:27017/catalogue"
+Environment=MONGO_URL="mongodb://mongo.twous.sbs:27017/catalogue"
 // highlight-end
 ExecStart=/bin/node /app/server.js
 SyslogIdentifier=catalogue
