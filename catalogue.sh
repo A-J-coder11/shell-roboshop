@@ -70,6 +70,7 @@ VALIDATE $? " copying catalogue service"
 
 systemctl daemon-reload &>>$LOG_FILE
 systemctl enable catalogue  &>>$LOG_FILE
+systemctl status catalogue &>>$LOG_FILE
 systemctl start catalogue
 VALIDATE $? "starting catalogue"
 
@@ -81,7 +82,7 @@ VALIDATE $? "installing mongodb client"
 # STATUS=$(mongosh --host mongodb.twous.sbs --eval 'db.getMongo().getDBNames().indexOf("catalogue")')
 # if [ $STATUS -lt 0 ]
 # then
-    mongosh --host localhost < /app/db/master-data.js &>>$LOG_FILE
+    mongosh --host mongodb.twous.sbs < /app/db/master-data.js &>>$LOG_FILE
     VALIDATE $? "Loading data into MongoDB"
 # else
 #   echo -e "Data is already loaded...$Y Skipping $N"
